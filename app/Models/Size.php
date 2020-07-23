@@ -4,14 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pizza extends Model
+class Size extends Model
 {
-    protected $table = 'pizzas';
+    protected $table = 'sizes';
     public function ingredients()
-    {
-        return $this->hasMany('App\Models\PizzaIngredient');
-    }
-    public function sizes()
     {
         return $this->hasMany('App\Models\PizzaSize');
     }
