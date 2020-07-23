@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PizzaIngredient extends Model
 {
-    protected $table = 'pizzas_ingredients';
+    protected $table = 'ingredient_pizza';
 
 }
