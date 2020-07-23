@@ -15,4 +15,8 @@ class Pizza extends Model
     {
         return $this->hasMany('App\Models\PizzaSize');
     }
+    public function order_lines()
+    {
+        return $this->hasMany('App\Models\OrderLine');
+    }
 }
