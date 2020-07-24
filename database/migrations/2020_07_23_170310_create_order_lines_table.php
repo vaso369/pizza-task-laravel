@@ -20,6 +20,7 @@ class CreateOrderLinesTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('pizza_id')->references('id')->on('pizzas');
             $table->integer('quantity');
+            $table->integer('size_id');
             $table->decimal('total_price',5,2);
         });
     }

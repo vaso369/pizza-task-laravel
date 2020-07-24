@@ -2,8 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\User;
 use Faker\Factory as Faker;
+use Illuminate\Support\Carbon;
+
 
 
 class UserSeeder extends Seeder
@@ -17,13 +19,14 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
     	foreach (range(1,10) as $index) {
-	        DB::table('users')->insert([
+	        User::create([
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastName,
 	            'email' => $faker->email,
                 'password' => bcrypt('secret'),
                 'is_active' => 1,
-                'role_id' => 2
+                'role_id' => 2,
+                'created_at'=>Carbon::now()
 
             ]);
             }

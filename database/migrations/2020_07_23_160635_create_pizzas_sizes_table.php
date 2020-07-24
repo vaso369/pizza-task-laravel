@@ -14,6 +14,7 @@ class CreatePizzasSizesTable extends Migration
     public function up()
     {
         Schema::create('pizzas_sizes', function (Blueprint $table) {
+            $table->id();
             $table->decimal('price',2);
             $table->unsignedBigInteger('pizza_id');
             $table->unsignedBigInteger('size_id');
