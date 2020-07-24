@@ -13,11 +13,27 @@ class PizzaIngredientSeeder extends Seeder
      */
     public function run()
     {
-        foreach (range(1,40) as $index) {
-            DB::table('pizzas_ingredients')->insert([
+        foreach (range(1,8) as $index) {
+            DB::table('ingredient_pizza')->insert([
                 
-                    'pizza_id'=>rand(1,8),
-                    'ingredient_id'=>rand(1,8)
+                    'pizza_id'=>$index,
+                    'ingredient_id'=>rand(1,3)
+                
+            ]);
+        }
+        foreach (range(1,8) as $index) {
+            DB::table('ingredient_pizza')->insert([
+                
+                    'pizza_id'=>$index,
+                    'ingredient_id'=>rand(4,6)
+                
+            ]);
+        }
+        foreach (range(1,8) as $index) {
+            DB::table('ingredient_pizza')->insert([
+                
+                    'pizza_id'=>$index,
+                    'ingredient_id'=>rand(7,8)
                 
             ]);
         }

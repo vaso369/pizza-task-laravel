@@ -12,7 +12,7 @@ class PizzaService {
     public function getAll(){
         try{
            // $id=auth('api')->user()->id;
-            return $this->repository->getAll();
+            return $this->repository->getAllPizzas();
         }
         catch(Exception $ex){
             return response(['message'=>$ex->getMessage()]);
@@ -30,7 +30,7 @@ class PizzaService {
     public function getById($id){
         try{
            // $id=auth('api')->user()->id;
-            return $this->repository->getById($id);
+            return $this->repository->getPizzaById($id);
         }
         catch(Exception $ex){
             return response(['message'=>$ex->getMessage()]);

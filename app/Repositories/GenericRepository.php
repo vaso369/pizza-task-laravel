@@ -3,56 +3,25 @@
 namespace App\Repositories;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Carbon;
 
 class GenericRepository
 {
-    private $model;
-    private $converter;
-    public function __construct( $model,$converter) {
+    protected $model;
+    protected $per_page = 3;
+    public function __construct( $model) {
         $this->model = $model;
-        $this->converter = $converter;
+        if(\Request::get('per_page')){
+            $this->per_page=\Request::get('per_page');
+        }
     }
     public function getAll()
     {
-        $per_page = 3;
-        $pizzas= $this->model->select('id','name','description','image_thumb_path');
-        if(\Request::get('per_page')){
-            $per_page=\Request::get('per_page');
-        }
-         if(\Request::get('name')){
-
-            $pizzas = $pizzas->where('name', 'like', '%' . \Request::get('name') . '%');
-        }
-       
-        $pizzas=$pizzas->paginate($per_page);
-        foreach($pizzas as $pizza){
-            $pizza->ingredients=$pizza->ingredients()->select('name')->get();
-            $pizza->sizes=$pizza->sizes()->select('size','price')->get();
-            if(\Request::get('currency')==='usd'){
-                foreach($pizza->sizes as $pizzaSize ){
-                    $pizzaSize->price =  number_format((float)$this->converter->convert($pizzaSize->price, 'EUR', 'USD', Carbon::today()), 2, '.', '');
-                   
-                  
-                }
-            }
-            
-        }
-
-        return $pizzas;
+       return $this->model->all();
     }
 
     public function getById($id)
     {
- 
-        $pizza= $this->model->select('id','name','description','image_path')->findOrFail($id);
-  
-  
-            $pizza->ingredients=$pizza->ingredients()->select('name')->get();
-            $pizza->sizes=$pizza->sizes()->select('size','price')->get();
-        
-
-        return $pizza;
+        return $this->model->findOrFail($id);
     }
 
 }

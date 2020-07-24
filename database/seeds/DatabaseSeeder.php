@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             PizzaSeeder::class,
             PizzaIngredientSeeder::class,
             IngredientSeeder::class,
+            PizzaSizeSeeder::class,
+            SizeSeeder::class,
         ]);
        
     }
