@@ -175,7 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ExchangeRatesProvider::class,
-      //  App\Providers\ValidatorServiceProvider::class,
 
     ],
 

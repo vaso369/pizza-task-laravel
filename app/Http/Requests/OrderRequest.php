@@ -24,13 +24,14 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'items'=>'empty'
+            'items'=>'empty|quantity'
         ];
     }
     public function messages()
     {
         return [
-            'items.empty'=>'empty array'
+            'items.empty'=>'empty array',
+            'items.quantity'=>'quantity must be less then 5'
         ];
     }
 }
