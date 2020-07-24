@@ -12,7 +12,18 @@ class UserRepository extends GenericRepository
         parent::__construct($user);
     }
     public function register($request){
-        return 123;
+    //    return $this->model->create([
+    //         'first_name' => $request->firstName,
+    //             'last_name' => $request->lastName,
+	//             'email' => $request->email,
+    //             'password' => bcrypt($request->password),
+    //             'role_id' => 2
+    //     ]);
+    $user = User::find(6);
+
+    //$user->first_name = 'New Name';
+
+    $user->delete();
     }
 
 }

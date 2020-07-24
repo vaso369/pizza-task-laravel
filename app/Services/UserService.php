@@ -1,6 +1,8 @@
 <?php 
 namespace App\Services;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Response;
+
 use Exception;
 
 class UserService {
@@ -9,7 +11,15 @@ class UserService {
         $this->repository = $userRepository;
     }
     public function register($request){
-        return $this->repository->register($request);
+        try{
+           $isInserted = $this->repository->register($request);
+           if($isInserted){
+               return Response::make('',201);
+           }
+        }catch(Exception $ex){
+            return response(['message'=>$ex->getMessage()]);
+        }
+         
     }
 
  

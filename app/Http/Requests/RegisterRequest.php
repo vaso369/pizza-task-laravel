@@ -24,7 +24,18 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'firstName'=>['required', 'regex:/^[A-Z][a-z]{2,15}$/'],
+            'lastName' => ['required', 'regex:/^[A-Z][a-z]{2,15}$/'],
+            'email' => 'required|email|unique:users',
+            'password' => ['required', 
+            'min:6', 
+            'regex:/^[A-z\d]+$/'],
+            'password_confirm' => 'same:password'
+        ];
+    }
+    public function messages(){
+        return [
+            'email' => 'You must enter email in valid format!',
         ];
     }
 }

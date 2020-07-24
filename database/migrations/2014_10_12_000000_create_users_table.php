@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('last_name',40);
             $table->string('email',70)->unique();
             $table->string('password',60);
-            $table->foreignId('role_id');
             $table->tinyInteger('is_active')->default('0');
             $table->tinyInteger('is_deleted')->default('0');
             $table->softDeletes('deleted_at', 0);
