@@ -15,6 +15,6 @@ class OrderController extends Controller
         return $this->service->getAll();
     }
     public function makeOrder(OrderRequest $request){
-      //  return $this->service->makeOrder($request);
+       return $this->service->makeOrder($request);
     }
 }

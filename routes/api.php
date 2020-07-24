@@ -24,8 +24,8 @@ Route::get('/pizzas/{id}','PizzaController@getPizzaById');
 Route::post('/user','UserController@register');
 Route::post('/login','UserController@login');
 
-//Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/order', 'OrderController@getAllOrders');
     Route::post('/order', 'OrderController@makeOrder');
-//});
+});
 

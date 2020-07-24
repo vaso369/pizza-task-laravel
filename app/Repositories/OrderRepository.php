@@ -22,8 +22,8 @@ class OrderRepository extends GenericRepository
        return 123;
    }
    public function getPizzaPrice($item){
-    $pizza=Pizza::find($item['pizzaId']);
-    $pizzaPrice= $pizza->sizes()->select('price')->where('size_id',$item['pizzaSizeId'])->firstOrFail();
+    $pizza=Pizza::findOrFail($item['pizzaId']);
+    $pizzaPrice= $pizza->sizes()->select('price')->where('size_id',$item['pizzaSizeId'])->findOrFail($item['pizzaSizeId']);
     return $pizzaPrice->price;
    }
    public function makeOrder($request){
@@ -33,21 +33,21 @@ class OrderRepository extends GenericRepository
         $unitPrice= $this->getPizzaPrice($item);
           $price+=($unitPrice)*$item['quantity'];
        }
-    
        $priceUSD = $this->converter->convert($price);
       // return $priceUSD;
      //  return $priceEur;
      \DB::beginTransaction();
-
+     $user_id=auth('api')->user()->id;
         $order = $this->model->create([
             'address' => $request->address,
                 'phone' => $request->phone,
                 'additional_info' => $request->additionalInfo,
-                'user_id' => $request->userId,
+                'user_id' => $user_id,
                 'payment' => $request->payment,
                 'status'=>'Received',
                 'price_eur' =>$price,
-                'price_usd' =>$priceUSD
+                'price_usd' =>$priceUSD,
+                
 
         ]);
         $orderId = $order->id;
@@ -62,7 +62,7 @@ class OrderRepository extends GenericRepository
     
             ]);
         }
-        \DB::commit();
+       \DB::commit();
 
    }
   

@@ -18,17 +18,14 @@ class SizeSeeder extends Seeder
         DB::table('sizes')->insert([
             [
                 'size'=>'32cm',
-                'is_active'=>1,
                 'created_at'=>Carbon::now()
             ],
             [
                 'size'=>'40cm',
-                'is_active'=>1,
                 'created_at'=>Carbon::now()
             ],
             [
                 'size'=>'50cm',
-                'is_active'=>1,
                 'created_at'=>Carbon::now()
             ]
         ]);

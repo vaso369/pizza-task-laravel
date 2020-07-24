@@ -24,7 +24,6 @@ class UserSeeder extends Seeder
                 'last_name' => $faker->lastName,
 	            'email' => $faker->email,
                 'password' => bcrypt('secret'),
-                'is_active' => 1,
                 'role_id' => 2,
                 'created_at'=>Carbon::now()
 

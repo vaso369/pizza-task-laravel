@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderLine extends BaseModel
+class OrderLine extends Model
 {
     protected $table = 'pizza_order';
     public $timestamps=false;

@@ -16,8 +16,6 @@ class CreateSizeTable extends Migration
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
             $table->string('size',20);
-            $table->tinyInteger('is_active')->default('0');
-            $table->tinyInteger('is_deleted')->default('0');
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

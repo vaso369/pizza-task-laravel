@@ -16,8 +16,7 @@ class AddRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('role_name',30);
-            $table->tinyInteger('is_active')->default('0');
-            $table->tinyInteger('is_deleted')->default('0');
+
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

@@ -19,12 +19,10 @@ class RoleSeeder extends Seeder
         DB::table('roles')->insert([
             [
                 'role_name' => 'admin',
-                'is_active'=>1,
                 'created_at'=>Carbon::now()
             ],
             [
                 'role_name' => 'user',
-                'is_active'=>1,
                 'created_at'=>Carbon::now()
             ]
         ]);
