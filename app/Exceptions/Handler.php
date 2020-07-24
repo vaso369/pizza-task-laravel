@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\AuthenticationException;
 
 
 class Handler extends ExceptionHandler
@@ -55,6 +56,15 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ModelNotFoundException) {
             return response(['message'=>  explode('\\',$exception->getModel())[2]. ' with id ' .$exception->getIds()[0]. ' does not exist']);
         }
+     
         return parent::render($request, $exception);
     }
+    protected function unauthenticated($request, AuthenticationException $exception)
+{
+   
+        return response()->json(['error' => 'You have to log in first!'], 401);
+    
+
+   
+}
 }
