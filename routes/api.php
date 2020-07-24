@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/pizzas','PizzaController@getAllPizzas');
 Route::get('/pizzas/{id}','PizzaController@getPizzaById');
+
+Route::post('/user','UserController@register');
+

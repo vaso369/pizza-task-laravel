@@ -8,9 +8,8 @@ use App\Services\PizzaService;
 
 class PizzaController extends Controller
 {
-    private $service;
     public function __construct(PizzaService $service){
-        $this->service = $service;
+        parent::__construct($service);
     }
     public function getAllPizzas(){
         return $this->service->getAll();
