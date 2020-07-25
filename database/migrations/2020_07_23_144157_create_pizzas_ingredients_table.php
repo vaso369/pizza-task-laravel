@@ -13,13 +13,12 @@ class CreatePizzasIngredientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pizzas_ingredients', function (Blueprint $table) {
+        Schema::create('ingredient_pizza', function (Blueprint $table) {
             $table->unsignedBigInteger('pizza_id');
             $table->unsignedBigInteger('ingredient_id');
             $table->index(['pizza_id', 'ingredient_id']);
             $table->foreign('pizza_id')->references('id')->on('pizzas');
             $table->foreign('ingredient_id')->references('id')->on('ingredients');
-            $table->timestamps();
         });
     }
 

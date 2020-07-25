@@ -10,7 +10,7 @@ class Order extends BaseModel
     protected $fillable = ['address','phone','additional_info','user_id','payment','status','price_eur','price_usd'];
     public function order_lines()
     {
-        return $this->hasMany('App\Models\OrderLine');
+        return $this->belongsToMany('App\Models\Pizza','order_pizza');
     }
     public function user()
     {
@@ -18,7 +18,7 @@ class Order extends BaseModel
     }
     public function sizes()
     {
-        return $this->belongsToMany('App\Models\Size');
+        return $this->belongsToMany('App\Models\Size','size_pizza');
     }
 
 }

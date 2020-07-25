@@ -8,8 +8,8 @@ class OrderService {
     public function __construct(OrderRepository $orderRepository){
         $this->repository = $orderRepository;
     }
-        public function getAll(){
-            return $this->repository->getAllOrders();
+        public function getUserOrders(){
+            return $this->repository->getUserOrders();
         }
    public function makeOrder($request){
        return $this->repository->makeOrder($request);

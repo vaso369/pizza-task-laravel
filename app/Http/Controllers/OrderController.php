@@ -11,8 +11,8 @@ class OrderController extends Controller
     public function __construct(OrderService $service){
         parent::__construct($service);
     }
-    public function getAllOrders(){
-        return $this->service->getAll();
+    public function getUserOrders(){
+        return $this->service->getUserOrders();
     }
     public function makeOrder(OrderRequest $request){
        return $this->service->makeOrder($request);

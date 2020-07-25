@@ -18,8 +18,21 @@ class OrderRepository extends GenericRepository
         $this->converter = $converter;
         parent::__construct($order);
     }
-   public function getAllOrders(){
-       return 123;
+   public function getUserOrders(){
+  //  $user_id=auth('api')->user()->id;
+  $data = [];
+       $orders=$this->model->select('id','user_id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',1)->get();
+       foreach($orders as $order){
+           $order_pizzas= $order->order_lines()->select('pizza_id','size_id','quantity','total_price')->get();
+           foreach($order_pizzas as $order_pizza){
+            $pizza = Pizza::findOrFail($order_pizza->pizza_id);
+            $pizzaSize=$pizza->sizes()->select('size')->where('size_id',$order_pizza->size_id)->first();
+           $data[] = ['pizza_name'=>$pizza->name,'size'=>$pizzaSize->size,'quantity'=>$order_pizza->quantity,'price_eur'=>$order_pizza->total_price,'price_usd'=>$this->converter->convert($order_pizza->total_price)];
+            $order->items = $data;
+           }
+           $data= [];
+       }
+       return $orders;
    }
    public function getPizzaPrice($item){
     $pizza=Pizza::findOrFail($item['pizzaId']);

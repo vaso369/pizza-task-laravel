@@ -8,8 +8,12 @@ class Size extends Model
 {
     protected $table = 'sizes';
     protected $hidden = ['pivot'];
-    public function ingredients()
+    public function sizes()
     {
-        return $this->belongsToMany('App\Models\Pizza');
+        return $this->belongsToMany('App\Models\Pizza','size_pizza');
+    }
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order','size_pizza');
     }
 }

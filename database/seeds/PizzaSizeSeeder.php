@@ -14,7 +14,7 @@ class PizzaSizeSeeder extends Seeder
     public function run()
     {
         foreach (range(1,8) as $index) {
-            DB::table('pizza_size')->insert([
+            DB::table('size_pizza')->insert([
                 
                     'pizza_id'=>$index,
                     'size_id'=>1,
@@ -23,7 +23,7 @@ class PizzaSizeSeeder extends Seeder
             ]);
         }
         foreach (range(1,8) as $index) {
-            DB::table('pizza_size')->insert([
+            DB::table('size_pizza')->insert([
                 
                     'pizza_id'=>$index,
                     'size_id'=>2,
@@ -32,7 +32,7 @@ class PizzaSizeSeeder extends Seeder
             ]);
         }
         foreach (range(1,8) as $index) {
-            DB::table('pizza_size')->insert([
+            DB::table('size_pizza')->insert([
                 
                     'pizza_id'=>$index,
                     'size_id'=>3,

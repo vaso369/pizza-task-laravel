@@ -16,4 +16,8 @@ class User extends BaseModel
     {
         return $this->belongsTo('App\Models\Role');
     }
+    public function orders()
+    {
+        return $this->hasMeny('App\Models\Order');
+    }
 }

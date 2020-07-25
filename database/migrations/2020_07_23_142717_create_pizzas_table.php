@@ -18,6 +18,7 @@ class CreatePizzasTable extends Migration
             $table->string('name',80)->unique();
             $table->string('description');
             $table->string('image_path');
+            $table->string('image_thumb_path');
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

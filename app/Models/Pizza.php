@@ -14,10 +14,10 @@ class Pizza extends Model
     }
     public function sizes()
     {
-        return $this->belongsToMany('App\Models\Size');
+        return $this->belongsToMany('App\Models\Size','size_pizza');
     }
     public function order_lines()
     {
-        return $this->hasMany('App\Models\OrderLine');
+        return $this->belongsToMany('App\Models\Order','order_pizza');
     }
 }
