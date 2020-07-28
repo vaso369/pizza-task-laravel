@@ -17,6 +17,7 @@ class UserRepository extends GenericRepository
                 'last_name' => $request->lastName,
 	            'email' => $request->email,
                 'password' => bcrypt($request->password),
+                'role_id'=>2
         ]);
     }
     public function login($request){

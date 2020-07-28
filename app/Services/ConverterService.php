@@ -9,7 +9,7 @@ class ConverterService {
     public function __construct(ExchangeRate $converter){
         $this->converter = $converter;
     }
-    public function convert($price) {
-        return number_format((float)$this->converter->convert($price, 'EUR', 'USD', Carbon::today()), 2, '.', '');
+    public function convert($price,$from='EUR',$to='USD') {
+        return number_format((float)$this->converter->convert($price, $from, $to, Carbon::today()), 2, '.', '');
     }
 }

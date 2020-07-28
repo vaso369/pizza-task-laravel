@@ -26,7 +26,7 @@ class UserService {
     public function login($request){
         $login=['email'=>$request->input('email'),'password'=>$request->input('password')];
         if(!Auth::attempt($login)){
-            return response(['message'=>'Invalid credentials']);
+            return response(['message'=>'Invalid credentials'],401);
         }
 
         $accessToken = Auth::user()->createToken('authToken')->accessToken;

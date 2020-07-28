@@ -14,4 +14,7 @@ class OrderService {
    public function makeOrder($request){
        return $this->repository->makeOrder($request);
    }
+   public function convertPrice($request){
+    return $this->repository->convertPrice($request);
+}
 }

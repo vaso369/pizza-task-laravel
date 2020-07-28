@@ -19,9 +19,8 @@ class OrderRepository extends GenericRepository
         parent::__construct($order);
     }
    public function getUserOrders(){
-  //  $user_id=auth('api')->user()->id;
   $data = [];
-       $orders=$this->model->select('id','user_id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',1)->get();
+       $orders=$this->model->select('id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',1)->get();
        foreach($orders as $order){
            $order_pizzas= $order->order_lines()->select('pizza_id','size_id','quantity','total_price')->get();
            foreach($order_pizzas as $order_pizza){
@@ -46,9 +45,11 @@ class OrderRepository extends GenericRepository
         $unitPrice= $this->getPizzaPrice($item);
           $price+=($unitPrice)*$item['quantity'];
        }
+       if($price < 15){
+           $price+=5;
+       }
        $priceUSD = $this->converter->convert($price);
-      // return $priceUSD;
-     //  return $priceEur;
+
      \DB::beginTransaction();
      $user_id=auth('api')->user()->id;
         $order = $this->model->create([
@@ -77,6 +78,16 @@ class OrderRepository extends GenericRepository
         }
        \DB::commit();
 
+   }
+   public function convertPrice($request){
+      $priceConvert=0;
+      if($request->currency==='eur'){
+          $priceConvert=$this->converter->convert($request->price,'USD','EUR');
+      }
+      else{
+        $priceConvert=$this->converter->convert($request->price);
+      }
+      return response(['price'=>$priceConvert,'currency'=>$request->currency]);
    }
   
 

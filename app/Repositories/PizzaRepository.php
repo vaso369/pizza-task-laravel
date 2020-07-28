@@ -28,7 +28,7 @@ class PizzaRepository extends GenericRepository
             $pizza->sizes=$pizza->sizes()->select('size','price')->get();
             if(\Request::get('currency')==='usd'){
                 foreach($pizza->sizes as $pizzaSize ){
-                    $pizzaSize->price =  $this->converter->convert($pizzaSize->price);
+                    $pizzaSize->price =  $this->converter->convert($pizzaSize->price,'EUR','USD');
                    
                   
                 }
@@ -45,7 +45,7 @@ class PizzaRepository extends GenericRepository
   
   
             $pizza->ingredients=$pizza->ingredients()->select('name')->get();
-            $pizza->sizes=$pizza->sizes()->select('size','price')->get();
+            $pizza->sizes=$pizza->sizes()->select('size','price','size_id')->get();
         
 
         return $pizza;

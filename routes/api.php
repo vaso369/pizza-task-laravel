@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/pizzas','PizzaController@getAllPizzas');
 Route::get('/pizzas/{id}','PizzaController@getPizzaById');
+Route::get('/convert','OrderController@convertPrice');
 
 Route::post('/user','UserController@register');
 Route::post('/login','UserController@login');

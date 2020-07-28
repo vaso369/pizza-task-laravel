@@ -17,4 +17,7 @@ class OrderController extends Controller
     public function makeOrder(OrderRequest $request){
        return $this->service->makeOrder($request);
     }
+    public function convertPrice(Request $request){
+        return $this->service->convertPrice($request);
+    }
 }
