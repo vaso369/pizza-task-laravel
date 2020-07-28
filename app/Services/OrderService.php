@@ -5,16 +5,38 @@ use Exception;
 
 class OrderService {
     private $repository;
+
     public function __construct(OrderRepository $orderRepository){
         $this->repository = $orderRepository;
     }
-        public function getUserOrders(){
+
+    public function getUserOrders(){
+        
+        try{
             return $this->repository->getUserOrders();
+        }catch(Exception $ex){
+            return response(['message'=>$ex->getMessage()],500);
         }
-   public function makeOrder($request){
-       return $this->repository->makeOrder($request);
-   }
+            
+    }
+
+    public function makeOrder($request){
+
+        try{
+            return $this->repository->makeOrder($request);
+        }catch(Exception $ex){
+            return response(['message'=>$ex->getMessage()],500);
+        }
+      
+    }
+
    public function convertPrice($request){
-    return $this->repository->convertPrice($request);
-}
+
+        try{
+            return $this->repository->convertPrice($request);
+        }catch(Exception $ex){
+            return response(['message'=>$ex->getMessage()],500);
+        }
+    
+    }
 }

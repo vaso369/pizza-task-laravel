@@ -12,6 +12,7 @@ class UserRepository extends GenericRepository
         parent::__construct($user);
     }
     public function register($request){
+
        return $this->model->create([
             'first_name' => $request->firstName,
                 'last_name' => $request->lastName,
@@ -20,9 +21,7 @@ class UserRepository extends GenericRepository
                 'role_id'=>2
         ]);
     }
-    public function login($request){
-        return 1234444;
-    }
+   
 
 }
 

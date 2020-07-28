@@ -19,11 +19,15 @@ class OrderRepository extends GenericRepository
         parent::__construct($order);
     }
    public function getUserOrders(){
-  $data = [];
-       $orders=$this->model->select('id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',1)->get();
+        $data = [];
+        $orders=$this->model->select('id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',1)->get();
+
        foreach($orders as $order){
+
            $order_pizzas= $order->order_lines()->select('pizza_id','size_id','quantity','total_price')->get();
+
            foreach($order_pizzas as $order_pizza){
+               
             $pizza = Pizza::findOrFail($order_pizza->pizza_id);
             $pizzaSize=$pizza->sizes()->select('size')->where('size_id',$order_pizza->size_id)->first();
            $data[] = ['pizza_name'=>$pizza->name,'size'=>$pizzaSize->size,'quantity'=>$order_pizza->quantity,'price_eur'=>$order_pizza->total_price,'price_usd'=>$this->converter->convert($order_pizza->total_price)];
@@ -34,11 +38,12 @@ class OrderRepository extends GenericRepository
        return $orders;
    }
    public function getPizzaPrice($item){
-    $pizza=Pizza::findOrFail($item['pizzaId']);
-    $pizzaPrice= $pizza->sizes()->select('price')->where('size_id',$item['pizzaSizeId'])->findOrFail($item['pizzaSizeId']);
-    return $pizzaPrice->price;
+        $pizza=Pizza::findOrFail($item['pizzaId']);
+        $pizzaPrice= $pizza->sizes()->select('price')->where('size_id',$item['pizzaSizeId'])->findOrFail($item['pizzaSizeId']);
+        return $pizzaPrice->price;
    }
    public function makeOrder($request){
+
        $price=0;
        
        foreach($request->items as $item){
@@ -51,7 +56,7 @@ class OrderRepository extends GenericRepository
        $priceUSD = $this->converter->convert($price);
 
      \DB::beginTransaction();
-     $user_id=auth('api')->user()->id;
+        $user_id=auth('api')->user()->id;
         $order = $this->model->create([
             'address' => $request->address,
                 'phone' => $request->phone,
@@ -80,7 +85,9 @@ class OrderRepository extends GenericRepository
 
    }
    public function convertPrice($request){
+
       $priceConvert=0;
+      
       if($request->currency==='eur'){
           $priceConvert=$this->converter->convert($request->price,'USD','EUR');
       }

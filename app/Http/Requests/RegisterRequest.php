@@ -35,7 +35,15 @@ class RegisterRequest extends FormRequest
     }
     public function messages(){
         return [
+            'email.required' => 'Email must not be empty',
             'email' => 'You must enter email in valid format!',
+            'firstName.required'=>'First name must not be empty!',
+            'firstName.regex'=>'First name must be in regular format!',
+            'lastName.required'=>'Last name must not be empty!',
+            'lastName.regex'=>'Last name must be in regular format!',
+            'password.min'=>'Minimum password length is 6!',
+            'password.regex'=>'Password must be in valid format!',
+            
         ];
     }
 }

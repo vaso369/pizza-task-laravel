@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Http\Requests\OrderRequest;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     public function __construct(OrderService $service){
         parent::__construct($service);

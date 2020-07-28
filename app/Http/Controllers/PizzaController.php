@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\PizzaService;
 
 
-class PizzaController extends Controller
+class PizzaController extends BaseController
 {
     public function __construct(PizzaService $service){
         parent::__construct($service);

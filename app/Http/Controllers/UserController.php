@@ -7,7 +7,7 @@ use App\Services\UserService;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function __construct(UserService $service){
         parent::__construct($service);

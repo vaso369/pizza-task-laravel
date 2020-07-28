@@ -34,7 +34,7 @@ class OrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'address.required'=>'You have to enter delivery addres!',
+            'address.required'=>'You have to enter delivery address!',
             'additionalInfo.max'=>'Info length must be less than 255!',
             'phone.required'=>'Phone number is required!',
             'phone.regex'=>'You have to enter phone number in valid format!',
