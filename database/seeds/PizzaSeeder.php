@@ -31,7 +31,7 @@ class PizzaSeeder extends Seeder
             [
                 'name' => 'Pepperoni',
                 'description' => 'Pepperoni is an American variety of salami, made from a cured mixture of pork and beef seasoned with paprika or other chili pepper.',
-                'image_path'=>'https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80','https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80',
+                'image_path'=>'https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80','image_thumb_path'=>'https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80',
                 'created_at'=>Carbon::now()
             ]
             ,
