@@ -43,7 +43,6 @@ class OrderRepository extends GenericRepository
         return $pizzaPrice->price;
    }
    public function makeOrder($request){
-return $request;
        $price=0;
        
        foreach($request->items as $item){
@@ -56,12 +55,12 @@ return $request;
        $priceUSD = $this->converter->convert($price);
 
      \DB::beginTransaction();
-        $user_id=auth('api')->user()->id;
+       
         $order = $this->model->create([
             'address' => $request->address,
                 'phone' => $request->phone,
                 'additional_info' => $request->additionalInfo,
-                'user_id' => $user_id,
+                'user_id' => $request->userId,
                 'payment' => $request->payment,
                 'status'=>'Received',
                 'price_eur' =>$price,
