@@ -9,9 +9,8 @@ Route::get('/convert','OrderController@convertPrice');
 
 Route::post('/user','UserController@register');
 Route::post('/login','UserController@login');
-Route::post('/order', 'OrderController@makeOrder');
 Route::group(['middleware' => 'jwtAuth'], function () {
     Route::get('/order', 'OrderController@getUserOrders');
-
+    Route::post('/order', 'OrderController@makeOrder');
 });
 
