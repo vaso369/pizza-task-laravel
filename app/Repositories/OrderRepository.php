@@ -20,7 +20,6 @@ class OrderRepository extends GenericRepository
     }
    public function getUserOrders(){
        $userId = \Request::get('userId');
-       return $userId;
         $data = [];
         $orders=$this->model->select('id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',$userId)->get();
 
