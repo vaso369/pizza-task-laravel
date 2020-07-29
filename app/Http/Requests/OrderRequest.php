@@ -27,8 +27,9 @@ class OrderRequest extends FormRequest
             'address'=> 'required',
             'additionalInfo'=>'max:255',
             'phone'=> ['required','regex:/^(\(?([\d \-\)\–\+\/\(]+)\)?([ .\-–\/]?)([\d]+))$/'],
-            'payment'=>'payment',
-            'items'=>'empty|quantity'
+            // WORK ON LOCAL HOST BUT ON HEROKU CAN'T FIND REGISTER METHOD IN ILLUMINATES/VALIDATION
+            // 'payment'=>'payment',
+            // 'items'=>'empty|quantity'
         ];
     }
     public function messages()
@@ -38,9 +39,9 @@ class OrderRequest extends FormRequest
             'additionalInfo.max'=>'Info length must be less than 255!',
             'phone.required'=>'Phone number is required!',
             'phone.regex'=>'You have to enter phone number in valid format!',
-            'payment'=>'Payment type that does not exist!',
-            'items.empty'=>'empty array',
-            'items.quantity'=>'quantity must be less then 5'
+            // 'payment'=>'Payment type that does not exist!',
+            // 'items.empty'=>'empty array',
+            // 'items.quantity'=>'quantity must be less then 5'
         ];
     }
 }
