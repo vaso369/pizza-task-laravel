@@ -18,9 +18,10 @@ class OrderRepository extends GenericRepository
         $this->converter = $converter;
         parent::__construct($order);
     }
-   public function getUserOrders(){
+   public function getUserOrders($request){
+       $userId = \Request::get('userId');
         $data = [];
-        $orders=$this->model->select('id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',1)->get();
+        $orders=$this->model->select('id','address','phone','additional_info','price_eur','price_usd','payment','status')->where('user_id',$userId)->get();
 
        foreach($orders as $order){
 
