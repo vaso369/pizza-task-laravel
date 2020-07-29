@@ -17,7 +17,6 @@ class OrderController extends BaseController
     }
 
     public function makeOrder(Request $request){
-     return 123;
        return $this->service->makeOrder($request);
     }
     
