@@ -33,7 +33,7 @@ class jwtAuth
                     $decoded = JWT::decode($jwt, $secret_key, array('HS256'));
                    // $request->id=$decoded->user->id;
                     // Access is granted.
-                    return response($decoded);
+                    return response(['asdasd'=>'asdasd']);
                     return $next($request);
 
                 } catch (\Exception $e) {
