@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "794c094ed55a222f541e02a6a4aec052",
+    "content-hash": "c33a5f812c3f2f37d155bd2f6795e598",
     "packages": [
         {
             "name": "ashallendesign/laravel-exchange-rates",

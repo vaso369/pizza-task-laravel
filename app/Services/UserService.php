@@ -3,12 +3,15 @@ namespace App\Services;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
+use \Firebase\JWT\JWT;
+
 
 
 use Exception;
 
 class UserService {
     private $repository;
+    private $userJson;
     public function __construct(UserRepository $userRepository){
         $this->repository = $userRepository;
     }
@@ -27,17 +30,38 @@ class UserService {
     public function login($request){
 
         try{
-            $login=['email'=>$request->input('email'),'password'=>$request->input('password')];
-            if(!Auth::attempt($login)){
-                return response(['message'=>'Invalid credentials'],401);
-            }
-
-            $accessToken = Auth::user()->createToken('authToken')->accessToken;
-            $user = ['first_name'=>Auth::user()->first_name,'last_name'=>Auth::user()->last_name,'email'=>Auth::user()->email,'role_id'=>Auth::user()->role_id];
-            return response(['user'=>$user,'accessToken'=>$accessToken]);
+           $user = $this->repository->getUser($request);
+           $this->JWTtoken($user);
+           return response($this->userJson);
          }catch(Exception $ex){
             return response(['message'=>$ex->getMessage()],500);
          }
+    }
+    public function JWTtoken($user)
+    {
+        $secret_key = "YOUR_SECRET_KEY";
+        $issuer_claim = "THE_ISSUER";
+        $audience_claim = "THE_AUDIENCE";
+        $issuedat_claim = time();
+        $notbefore_claim = $issuedat_claim;
+        $expire_claim = $issuedat_claim + 1200;
+        $token = array(
+            "iss" => $issuer_claim,
+            "aud" => $audience_claim,
+            "iat" => $issuedat_claim,
+            "nbf" => $notbefore_claim,
+            "exp" => $expire_claim,
+        );
+
+        $jwt = JWT::encode($token, $secret_key);
+        $userJson = array(
+                "message" => "Successful login.",
+                "token" => $jwt,
+                "expireAt" => $expire_claim,
+                "user" => $user,
+            );
+        $this->userJson = $userJson;
+
     }
     public function logout(){ 
         

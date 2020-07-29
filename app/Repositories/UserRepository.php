@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -20,6 +21,13 @@ class UserRepository extends GenericRepository
                 'password' => bcrypt($request->password),
                 'role_id'=>2
         ]);
+    }
+    public function getUser($request){
+        $user = $this->model->where([['email',$request->email]])->firstOrFail();
+        $exist = Hash::check($request->password,$user->password);
+        if($exist){
+            return $this->model->select('id','first_name','last_name','email')->where('id',$user->id)->firstOrFail();
+        }
     }
    
 
