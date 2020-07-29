@@ -18,7 +18,7 @@ class OrderRepository extends GenericRepository
         $this->converter = $converter;
         parent::__construct($order);
     }
-   public function getUserOrders($request){
+   public function getUserOrders(){
        $userId = \Request::get('userId');
        return $userId;
         $data = [];
