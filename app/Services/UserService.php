@@ -34,7 +34,7 @@ class UserService {
            $this->JWTtoken($user);
            return response($this->userJson);
          }catch(Exception $ex){
-            return response(['message'=>$ex->getMessage()],500);
+           // return response(['message'=>$ex->getMessage()],500);
          }
     }
     public function JWTtoken($user)
