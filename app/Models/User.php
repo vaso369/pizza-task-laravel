@@ -18,6 +18,7 @@ class User extends BaseModel
     }
     public function orders()
     {
-        return $this->hasMeny('App\Models\Order');
+        return $this->hasMany('App\Models\Order');
     }
+    
 }

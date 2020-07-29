@@ -13,5 +13,6 @@ Route::post('/login','UserController@login');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/order', 'OrderController@getUserOrders');
     Route::post('/order', 'OrderController@makeOrder');
+    Route::post('/logout', 'UserController@logout');
 });
 

@@ -11,12 +11,15 @@ class OrderController extends BaseController
     public function __construct(OrderService $service){
         parent::__construct($service);
     }
+
     public function getUserOrders(){
         return $this->service->getUserOrders();
     }
+
     public function makeOrder(OrderRequest $request){
        return $this->service->makeOrder($request);
     }
+    
     public function convertPrice(Request $request){
         return $this->service->convertPrice($request);
     }

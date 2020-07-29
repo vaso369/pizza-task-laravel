@@ -39,6 +39,12 @@ class UserService {
             return response(['message'=>$ex->getMessage()],500);
          }
     }
+    public function logout(){ 
+        
+            if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+            }
+    }
 
  
 }

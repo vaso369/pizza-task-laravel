@@ -16,8 +16,13 @@ class UserController extends BaseController
     public function register(RegisterRequest $request){
         return $this->service->register($request);
     }
+
     public function login(LoginRequest $request){
         return $this->service->login($request);
+    }
+
+    public function logout(){
+        return $this->service->logout();
     }
 
 
