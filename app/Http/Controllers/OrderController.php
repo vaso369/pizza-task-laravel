@@ -16,7 +16,7 @@ class OrderController extends BaseController
         return $this->service->getUserOrders();
     }
 
-    public function makeOrder(Request $request){
+    public function makeOrder(OrderRequest $request){
        return $this->service->makeOrder($request);
     }
     
