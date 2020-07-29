@@ -43,7 +43,6 @@ class OrderRepository extends GenericRepository
         return $pizzaPrice->price;
    }
    public function makeOrder($request){
-       return $request;
 
        $price=0;
        
