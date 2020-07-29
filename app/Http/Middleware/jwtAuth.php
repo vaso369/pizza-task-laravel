@@ -16,6 +16,7 @@ class jwtAuth
      */
     public function handle($request, Closure $next)
     {
+        return 123;
         if ($request->header('Authorization') !== null) {
 
             $secret_key = "YOUR_SECRET_KEY";
