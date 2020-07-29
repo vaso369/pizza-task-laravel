@@ -29,13 +29,13 @@ class UserService {
     }
     public function login($request){
 
-       // try{
+        try{
            $user = $this->repository->getUser($request);
            $this->JWTtoken($user);
            return response($this->userJson);
-       //  }catch(Exception $ex){
-           // return response(['message'=>$ex->getMessage()],500);
-        // }
+         }catch(Exception $ex){
+            return response(['message'=>$ex->getMessage()],500);
+         }
     }
     public function JWTtoken($user)
     {
