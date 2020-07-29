@@ -25,7 +25,7 @@ class OrderService {
         try{
             return $this->repository->makeOrder($request);
         }catch(Exception $ex){
-            return response(['message'=>$ex->getMessage()],500);
+            return response(['msage'=>$ex->getMessage()],502);
         }
       
     }
